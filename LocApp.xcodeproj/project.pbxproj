@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		936F1C5A20BCC377003A95B0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F1C5920BCC377003A95B0 /* Colors.swift */; };
+		938C888C20B98DC70038643E /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C888B20B98DC70038643E /* Pin.swift */; };
 		93DA87E020B573FA00EC5E45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */; };
-		93DA87E220B573FA00EC5E45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA87E120B573FA00EC5E45 /* ViewController.swift */; };
 		93DA87E520B573FA00EC5E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DA87E320B573FA00EC5E45 /* Main.storyboard */; };
 		93DA87E720B573FA00EC5E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93DA87E620B573FA00EC5E45 /* Assets.xcassets */; };
 		93DA87EA20B573FA00EC5E45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DA87E820B573FA00EC5E45 /* LaunchScreen.storyboard */; };
 		93DA87F520B573FA00EC5E45 /* LocAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA87F420B573FA00EC5E45 /* LocAppTests.swift */; };
 		93DA880020B573FA00EC5E45 /* LocAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA87FF20B573FA00EC5E45 /* LocAppUITests.swift */; };
+		93DA880E20B581D100EC5E45 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA880D20B581D100EC5E45 /* LoginViewController.swift */; };
+		93DA881020B5877D00EC5E45 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA880F20B5877D00EC5E45 /* RegistrationViewController.swift */; };
+		93DA881420B58DD800EC5E45 /* RegistrationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA881320B58DD800EC5E45 /* RegistrationSuccessViewController.swift */; };
+		93DA881620B5A96200EC5E45 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA881520B5A96200EC5E45 /* MapViewController.swift */; };
+		93E811A520BACD940062A128 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E811A420BACD940062A128 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		936F1C5920BCC377003A95B0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		938C888B20B98DC70038643E /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		93DA87DC20B573FA00EC5E45 /* LocApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		93DA87E120B573FA00EC5E45 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		93DA87E420B573FA00EC5E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		93DA87E620B573FA00EC5E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93DA87E920B573FA00EC5E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +54,11 @@
 		93DA87FB20B573FA00EC5E45 /* LocAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DA87FF20B573FA00EC5E45 /* LocAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocAppUITests.swift; sourceTree = "<group>"; };
 		93DA880120B573FA00EC5E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93DA880D20B581D100EC5E45 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		93DA880F20B5877D00EC5E45 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		93DA881320B58DD800EC5E45 /* RegistrationSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSuccessViewController.swift; sourceTree = "<group>"; };
+		93DA881520B5A96200EC5E45 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		93E811A420BACD940062A128 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		936F1C5B20BCFDDF003A95B0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */,
+				936F1C5920BCC377003A95B0 /* Colors.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		93DA87D320B573FA00EC5E45 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +118,12 @@
 		93DA87DE20B573FA00EC5E45 /* LocApp */ = {
 			isa = PBXGroup;
 			children = (
-				93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */,
-				93DA87E120B573FA00EC5E45 /* ViewController.swift */,
-				93DA87E320B573FA00EC5E45 /* Main.storyboard */,
-				93DA87E620B573FA00EC5E45 /* Assets.xcassets */,
-				93DA87E820B573FA00EC5E45 /* LaunchScreen.storyboard */,
 				93DA87EB20B573FA00EC5E45 /* Info.plist */,
+				938C888B20B98DC70038643E /* Pin.swift */,
+				936F1C5B20BCFDDF003A95B0 /* Supporting Files */,
+				93DA881220B58A0400EC5E45 /* View */,
+				93DA881120B589B200EC5E45 /* Controller */,
+				93E811A620BACDFC0062A128 /* Model */,
 			);
 			path = LocApp;
 			sourceTree = "<group>";
@@ -123,6 +144,35 @@
 				93DA880120B573FA00EC5E45 /* Info.plist */,
 			);
 			path = LocAppUITests;
+			sourceTree = "<group>";
+		};
+		93DA881120B589B200EC5E45 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				93DA881320B58DD800EC5E45 /* RegistrationSuccessViewController.swift */,
+				93DA880F20B5877D00EC5E45 /* RegistrationViewController.swift */,
+				93DA880D20B581D100EC5E45 /* LoginViewController.swift */,
+				93DA881520B5A96200EC5E45 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		93DA881220B58A0400EC5E45 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				93DA87E320B573FA00EC5E45 /* Main.storyboard */,
+				93DA87E620B573FA00EC5E45 /* Assets.xcassets */,
+				93DA87E820B573FA00EC5E45 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		93E811A620BACDFC0062A128 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93E811A420BACD940062A128 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +309,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93DA87E220B573FA00EC5E45 /* ViewController.swift in Sources */,
+				93DA881020B5877D00EC5E45 /* RegistrationViewController.swift in Sources */,
+				936F1C5A20BCC377003A95B0 /* Colors.swift in Sources */,
+				93DA881420B58DD800EC5E45 /* RegistrationSuccessViewController.swift in Sources */,
+				93DA880E20B581D100EC5E45 /* LoginViewController.swift in Sources */,
+				938C888C20B98DC70038643E /* Pin.swift in Sources */,
+				93DA881620B5A96200EC5E45 /* MapViewController.swift in Sources */,
 				93DA87E020B573FA00EC5E45 /* AppDelegate.swift in Sources */,
+				93E811A520BACD940062A128 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
