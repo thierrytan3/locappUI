@@ -17,16 +17,16 @@ class Pin: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     
-    init(_ centerCoordinate: CLLocationCoordinate2D) {
+    init(_ centerCoordinate: CLLocationCoordinate2D, title: String) {
         self.coordinate = centerCoordinate
+        self.title = title
         
         super.init()
     }
     
     // Annotation right callout accessory opens this mapItem in Maps app
     func mapItem() -> MKMapItem {
-        let addressDict = [CNPostalAddressStreetKey: subtitle!]
-        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
+        let placemark = MKPlacemark(coordinate: coordinate)
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = title
         return mapItem

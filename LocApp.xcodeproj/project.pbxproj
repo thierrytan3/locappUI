@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		935BE86420BE0BFA00D45341 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BE86320BE0BFA00D45341 /* ProfileViewController.swift */; };
+		935BE86620BE152700D45341 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BE86520BE152700D45341 /* Switcher.swift */; };
 		936F1C5A20BCC377003A95B0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F1C5920BCC377003A95B0 /* Colors.swift */; };
 		938C888C20B98DC70038643E /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C888B20B98DC70038643E /* Pin.swift */; };
+		93AD76C120BF5236009ACD38 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD76C020BF5236009ACD38 /* Network.swift */; };
 		93DA87E020B573FA00EC5E45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */; };
 		93DA87E520B573FA00EC5E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93DA87E320B573FA00EC5E45 /* Main.storyboard */; };
 		93DA87E720B573FA00EC5E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93DA87E620B573FA00EC5E45 /* Assets.xcassets */; };
@@ -40,8 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		935BE86320BE0BFA00D45341 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		935BE86520BE152700D45341 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		936F1C5920BCC377003A95B0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		938C888B20B98DC70038643E /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		93AD76C020BF5236009ACD38 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		93DA87DC20B573FA00EC5E45 /* LocApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DA87E420B573FA00EC5E45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 			children = (
 				93DA87DF20B573FA00EC5E45 /* AppDelegate.swift */,
 				936F1C5920BCC377003A95B0 /* Colors.swift */,
+				935BE86520BE152700D45341 /* Switcher.swift */,
+				93AD76C020BF5236009ACD38 /* Network.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 				93DA880F20B5877D00EC5E45 /* RegistrationViewController.swift */,
 				93DA880D20B581D100EC5E45 /* LoginViewController.swift */,
 				93DA881520B5A96200EC5E45 /* MapViewController.swift */,
+				935BE86320BE0BFA00D45341 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,7 +247,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = LocApp;
 				TargetAttributes = {
 					93DA87DB20B573FA00EC5E45 = {
@@ -309,12 +318,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935BE86620BE152700D45341 /* Switcher.swift in Sources */,
 				93DA881020B5877D00EC5E45 /* RegistrationViewController.swift in Sources */,
 				936F1C5A20BCC377003A95B0 /* Colors.swift in Sources */,
 				93DA881420B58DD800EC5E45 /* RegistrationSuccessViewController.swift in Sources */,
 				93DA880E20B581D100EC5E45 /* LoginViewController.swift in Sources */,
+				93AD76C120BF5236009ACD38 /* Network.swift in Sources */,
 				938C888C20B98DC70038643E /* Pin.swift in Sources */,
 				93DA881620B5A96200EC5E45 /* MapViewController.swift in Sources */,
+				935BE86420BE0BFA00D45341 /* ProfileViewController.swift in Sources */,
 				93DA87E020B573FA00EC5E45 /* AppDelegate.swift in Sources */,
 				93E811A520BACD940062A128 /* User.swift in Sources */,
 			);
@@ -385,6 +397,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -392,6 +405,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -442,6 +456,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -449,6 +464,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

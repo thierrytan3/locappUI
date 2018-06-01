@@ -13,12 +13,24 @@ class MapViewController: UIViewController {
     
     // Mark: - Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        self.searchBar.resignFirstResponder()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
+        
+        let annotation1: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.859231, longitude: 2.294782), title: "Bob MARLEY")
+        let annotation2: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.873566, longitude: 2.294686), title: "Bob DYLAN")
+        let annotation3: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.865866, longitude: 2.321214), title: "Carl JONSON")
+        let annotations: [Pin] = [annotation1, annotation2, annotation3]
+        self.mapView.addAnnotations(annotations)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,11 +80,6 @@ extension MapViewController: MKMapViewDelegate {
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
         // let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: CLLocationDegrees(0.005), longitudeDelta: CLLocationDegrees(0.005)))
         self.mapView.setRegion(region , animated: true)
-        
-        let annotation: Pin = Pin.init(center)
-        annotation.title = "Steve JOBS"
-        annotation.subtitle = "Rest in peace"
-        self.mapView.addAnnotation(annotation)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

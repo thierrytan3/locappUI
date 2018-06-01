@@ -8,13 +8,27 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
     var lastName: String?
     var firstName: String?
     var email: String?
     var password: String?
     var password2: String?
     
+    init(lastName: String?, firstName: String?, email: String?, password: String?, password2: String?) {
+        self.lastName = lastName
+        self.firstName = firstName
+        self.email = email
+        self.password = password
+        self.password2 = password2
+    }
+    
+    init(lastName: String?, firstName: String?, email: String?, password: String?) {
+        self.lastName = lastName
+        self.firstName = firstName
+        self.email = email
+        self.password = password
+    }
 }
 
 extension User {
