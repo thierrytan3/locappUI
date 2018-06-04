@@ -382,10 +382,6 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="AOx-8u-jny" id="leA-HE-VCf"/>
-                            <outlet property="delegate" destination="AOx-8u-jny" id="cJn-El-yaM"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Friends" image="friends1" id="4st-jb-DOL" userLabel="Friends"/>
                 </tableViewController>
