@@ -68,16 +68,27 @@ extension RegistrationViewController {
     }
     
     private func checkUserStatus() {
-        let userTest = User(lastName: "Marley", firstName: "Bob", email: "bob.marley@weed.be", password: "wakawka")
         switch self.user.status {
         case .accepted:
-            guard let jsonData = try? JSONEncoder().encode(userTest) else {
-                return
-            }
-            Network.post(jsonData: jsonData, path: "/user", completion: nil)
-            self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
+            self.saveUser()
         case .rejected(let error):
             self.presentAlert(with: error)
+        }
+    }
+    
+    private func saveUser() {
+        guard let jsonData = try? JSONEncoder().encode(self.user) else {
+            return
+        }
+        Network.post(jsonData: jsonData, path: "/posts") { (clientError, errorCode, data) in
+            if let error = clientError {
+                fatalError(error.localizedDescription)
+            } else if let error = errorCode {
+                print(error)
+            } else {
+                //
+                self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
+            }
         }
     }
     

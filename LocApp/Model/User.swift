@@ -13,22 +13,14 @@ struct User: Codable {
     var firstName: String?
     var email: String?
     var password: String?
-    var password2: String?
     
     init(lastName: String?, firstName: String?, email: String?, password: String?, password2: String?) {
         self.lastName = lastName
         self.firstName = firstName
         self.email = email
-        self.password = password
-        self.password2 = password2
+        self.password = (password == password2) ? password : nil
     }
     
-    init(lastName: String?, firstName: String?, email: String?, password: String?) {
-        self.lastName = lastName
-        self.firstName = firstName
-        self.email = email
-        self.password = password
-    }
 }
 
 extension User {
@@ -48,10 +40,8 @@ extension User {
         if self.email == nil || self.email == "" {
             return .rejected("Vous n'avez pas indiqué votre adresse e-mail !")
         }
-        if self.password == nil || self.password == "" || self.password != self.password2 {
-            if self.password2 == nil || self.password2 == "" || self.password2 != self.password {
-                return .rejected("Merci de bien vouloir vérifier et confirmer votre mot de passe.")
-            }
+        if self.password == nil || self.password == "" {
+            return .rejected("Merci de bien vouloir vérifier et confirmer votre mot de passe.")
         }
         return .accepted
     }
