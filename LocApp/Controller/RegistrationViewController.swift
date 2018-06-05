@@ -58,13 +58,14 @@ extension RegistrationViewController {
     }
     
     private func createUserObject() {
-        let lastName = self.textFields[0].text
-        let firstName = self.textFields[1].text
-        let email = self.textFields[2].text
-        let password1 = self.textFields[3].text
-        let password2 = self.textFields[4].text
+        let username = self.textFields[0].text
+        let lastName = self.textFields[1].text
+        let firstName = self.textFields[2].text
+        let email = self.textFields[3].text
+        let password1 = self.textFields[4].text
+        let password2 = self.textFields[5].text
         
-        self.user = User(lastName: lastName, firstName: firstName, email: email, password: password1, password2: password2  )
+        self.user = User(username: username, lastName: lastName, firstName: firstName, email: email, password: password1, password2: password2  )
     }
     
     private func checkUserStatus() {
@@ -80,16 +81,12 @@ extension RegistrationViewController {
         guard let jsonData = try? JSONEncoder().encode(self.user) else {
             return
         }
-        Network.post(jsonData: jsonData, path: "/posts") { (clientError, errorCode, data) in
-            if let error = clientError {
+        Network.post(path: "/posts", jsonData: jsonData) { (error, responseJson) in
+            if let error = error {
                 fatalError(error.localizedDescription)
-            } else if let error = errorCode {
-                print(error)
-            } else {
-                //
-                self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
             }
         }
+        self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
     }
     
     private func presentAlert(with error: String) {

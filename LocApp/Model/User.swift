@@ -9,12 +9,14 @@
 import Foundation
 
 struct User: Codable {
+    var username: String?
     var lastName: String?
     var firstName: String?
     var email: String?
     var password: String?
     
-    init(lastName: String?, firstName: String?, email: String?, password: String?, password2: String?) {
+    init(username: String?, lastName: String?, firstName: String?, email: String?, password: String?, password2: String?) {
+        self.username = username
         self.lastName = lastName
         self.firstName = firstName
         self.email = email
@@ -31,6 +33,9 @@ extension User {
     }
     
     var status: Status {
+        if self.username == nil || self.username == "" {
+            return .rejected("Vous n'avez pas indiqué votre nom !")
+        }
         if self.lastName == nil || self.lastName == "" {
             return .rejected("Vous n'avez pas indiqué votre nom !")
         }

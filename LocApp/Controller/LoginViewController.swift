@@ -10,25 +10,30 @@ import UIKit
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
-    var email: String?
-    var password: String?
+    struct Authenticator: Codable {
+        var username: String?
+        var password: String?
+    }
+    var authenticator: Authenticator!
     
     // MARK: - Outlets
-    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func validate() {
-        self.setLoginProperties()
+        self.createAuthenticatorObject()
         self.login()
     }
     
-    private func setLoginProperties() {
-        self.email = self.emailTextField.text
-        self.password = self.passwordTextField.text
+    private func createAuthenticatorObject() {
+        let username = self.usernameTextField.text
+        let password = self.passwordTextField.text
+        
+        self.authenticator = Authenticator(username: username, password: password)
     }
     
     private func login() {
-        if self.email != nil && self.email != "" && self.password != nil && self.password != "" {
+        if self.authenticator.username != nil && self.authenticator.username != "" && self.authenticator.password != nil && self.authenticator.password != "" {
             //
             UserDefaults.standard.set(true, forKey: "status")
             Switcher.updateRootVC()
@@ -39,7 +44,7 @@ class LoginViewController: UIViewController {
     // Note : on peut écrire du code à l'intérieur, si on a besoin d'effectuer une action lorsqu'on sera revenu à l'interface Login.
     @IBAction func unwindToLogin(segue:UIStoryboardSegue) {
         let registrationSuccessVC = segue.source as! RegistrationSuccessViewController
-        self.emailTextField.text = registrationSuccessVC.user.email
+        self.usernameTextField.text = registrationSuccessVC.user.username
         self.passwordTextField.becomeFirstResponder()
     }
 
@@ -90,12 +95,12 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UITextFieldDelegate {
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        self.emailTextField.resignFirstResponder()
+        self.usernameTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == self.emailTextField {
+        if textField == self.usernameTextField {
             self.passwordTextField.becomeFirstResponder()
         } else {
             self.validate()

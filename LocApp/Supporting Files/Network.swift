@@ -19,7 +19,7 @@ class Network {
         case failure(Error)
     }
     
-    static func get(path: String, for userId: Int, completion: ((Result<Any>) -> Void)?) {
+    static func get(path: String, for userId: Int, completion: ((Result<Data>) -> Void)?) {
         var urlComponents = URLComponents()
         urlComponents.scheme = self.scheme
         urlComponents.host = self.host
@@ -49,7 +49,22 @@ class Network {
         task.resume()
     }
     
-    static func post(jsonData: Data, path: String, completion:((Error?, Int?, Data?) -> Void)?) {
+    // #Musa
+    // Usage example of this get method:
+    /*
+    func buttonTapped() {
+     get(path: "/mypath", for: 1) { (result) in
+            switch result {
+            case .success(let jsonData):
+                self.data = jsonData
+            case .failure(let error):
+                fatalError("error: \(error.localizedDescription)")
+            }
+        }
+    }
+    */
+    
+    static func post(path: String, jsonData: Data, completion:((Error?, Data?) -> Void)?) {
         var urlComponents = URLComponents()
         urlComponents.scheme = self.scheme
         urlComponents.host = self.host
@@ -68,27 +83,42 @@ class Network {
         
         let task = session.dataTask(with: request) { (responseData, response, responseError) in
             guard responseError == nil else {
-                print("CLIENT ERROR : " + responseError!.localizedDescription)
-                completion?(responseError!, nil, nil)
+                completion?(responseError!, nil)
                 return
             }
             
-            let httpResponse = response as? HTTPURLResponse
-            guard (httpResponse != nil),
-                (200...299).contains(httpResponse!.statusCode) else {
-                    print ("SERVER ERROR : " + String(httpResponse!.statusCode))
-                    completion?(nil, httpResponse!.statusCode, nil)
+            guard let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) else {
+                    print ("server error")
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Data was not retrieved from request"]) as Error
+                    completion?(error, nil)
                     return
             }
             
-            if let data = responseData {
-                completion?(nil, nil, data)
+            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
+                print("response: ", utf8Representation)
+                completion?(nil, data)
             } else {
-                print("No readable data received in response")
+                print("no readable data received in response")
             }
         }
         task.resume()
     }
+
+    // #Musa
+    // Usage example of this post method:
+    /*
+    func buttonTapped() {
+     let encoder = JSONEncoder()
+     let jsonData = try encoder.encode(User)
+     
+     post(path: "/mypath", jsonData: jsonData) { (error) in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    */
     
     /*
     static func get(path: String) {
