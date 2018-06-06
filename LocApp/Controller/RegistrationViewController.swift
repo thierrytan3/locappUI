@@ -73,7 +73,7 @@ extension RegistrationViewController {
         case .accepted:
             self.saveUser()
         case .rejected(let error):
-            self.presentAlert(with: error)
+            AlertController.presentAlert(self, with: error)
         }
     }
     
@@ -83,22 +83,14 @@ extension RegistrationViewController {
         }
         Network.post(path: "/user", jsonData: jsonData) { (error, responseJson) in
             DispatchQueue.main.async {
-                if  error != nil{
-                    self.presentAlert(with: "La création a échoué, veuillez ressayer")
+                if  error != nil {
+                    AlertController.presentAlert(self, with: "La création a échoué, veuillez réessayer.")
                     //fatalError(error.localizedDescription)
                 } else {
                     self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
-            }
-                
+                }
             }
         }
-    }
-    
-    private func presentAlert(with error: String) {
-        let alert = UIAlertController(title: "Erreur", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
     
 }

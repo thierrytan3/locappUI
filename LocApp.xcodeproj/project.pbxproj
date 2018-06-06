@@ -26,6 +26,7 @@
 		93DA881420B58DD800EC5E45 /* RegistrationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA881320B58DD800EC5E45 /* RegistrationSuccessViewController.swift */; };
 		93DA881620B5A96200EC5E45 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA881520B5A96200EC5E45 /* MapViewController.swift */; };
 		93E811A520BACD940062A128 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E811A420BACD940062A128 /* User.swift */; };
+		93FD64EA20C88B26006F91D5 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FD64E920C88B26006F91D5 /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		93DA881320B58DD800EC5E45 /* RegistrationSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationSuccessViewController.swift; sourceTree = "<group>"; };
 		93DA881520B5A96200EC5E45 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		93E811A420BACD940062A128 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		93FD64E920C88B26006F91D5 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				936F1C5920BCC377003A95B0 /* Colors.swift */,
 				935BE86520BE152700D45341 /* Switcher.swift */,
 				93AD76C020BF5236009ACD38 /* Network.swift */,
+				93FD64E920C88B26006F91D5 /* AlertController.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				930423D120C846F4003290E7 /* FriendsLocation.swift in Sources */,
+				93FD64EA20C88B26006F91D5 /* AlertController.swift in Sources */,
 				935BE86620BE152700D45341 /* Switcher.swift in Sources */,
 				93DA881020B5877D00EC5E45 /* RegistrationViewController.swift in Sources */,
 				55D789C620C3193E00E0D8F0 /* TableViewControllerFriends.swift in Sources */,

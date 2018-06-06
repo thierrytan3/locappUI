@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // To force logout (for test)
+        // UserDefaults.standard.set(false, forKey: "status")
+        // UserDefaults.standard.removeObject(forKey: "token")
+        
         Switcher.updateRootVC()
         self.locationManager.requestAlwaysAuthorization()
         return true

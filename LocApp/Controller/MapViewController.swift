@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
+    // MARK:- Properties
     var positionsFriends: [FriendsLocation] = []
 
     struct Location: Codable {
@@ -31,7 +32,6 @@ class MapViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
-        
         
     }
     
@@ -59,14 +59,13 @@ class MapViewController: UIViewController {
                     } else {
                         print("no readable data received in response")
                     }
-                    
                 case .failure(let error):
-                    fatalError("error: \(error.localizedDescription)")
+                    AlertController.presentAlert(self, with: "Oups...")
+                    print(error.localizedDescription)
+                    // fatalError("error: \(error.localizedDescription)")
                 }
             }
-
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +116,10 @@ extension MapViewController: MKMapViewDelegate {
         // let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: CLLocationDegrees(0.005), longitudeDelta: CLLocationDegrees(0.005)))
         self.mapView.setRegion(region , animated: true)
         
+        self.saveUserLocation(userLocation)
+    }
+    
+    private func saveUserLocation(_ userLocation: MKUserLocation) {
         let location = Location(latitude: String(userLocation.coordinate.latitude), longitude: String(userLocation.coordinate.longitude))
         // Put request
         guard let jsonData = try? JSONEncoder().encode(location) else {

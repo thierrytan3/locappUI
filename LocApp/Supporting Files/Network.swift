@@ -14,7 +14,6 @@ class Network {
     static var userId = UserDefaults.standard.string(forKey: "id") ?? ""
     static let scheme = "https"
     static let host = "9ed609ea.ngrok.io"
-    // static let host = ""
 
     enum Result<Value> {
         case success(Value)
@@ -68,7 +67,7 @@ class Network {
     // Usage example of this get method:
     /*
     func buttonTapped() {
-     get(path: "/mypath", for: 1) { (result) in
+     get(path: "/mypath") { (result) in
             switch result {
             case .success(let jsonData):
                 self.data = jsonData
