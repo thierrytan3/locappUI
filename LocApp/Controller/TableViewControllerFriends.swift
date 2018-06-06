@@ -13,14 +13,15 @@ class TableViewControllerFriends: UITableViewController {
     var data = ""
     
     func createContact() {
-        print(Network.token)
-        Network.get(path: "/user/1/friends", for: 1) { (result) in
+        Network.get(path: "/user/\(Network.getUserId())/friends") { (result) in
             switch result {
             case .success(let jsonData):
                 let data = jsonData
                 if let utf8Representation = String(data: data, encoding: .utf8) {
                     print("response: ", utf8Representation)
-                    
+                    let decoder = JSONDecoder()
+                    self.contactList = try! decoder.decode([Friend].self, from: jsonData)
+                    self.tableView.reloadData()
                 } else {
                     print("no readable data received in response")
                 }
@@ -29,24 +30,18 @@ class TableViewControllerFriends: UITableViewController {
                 fatalError("error: \(error.localizedDescription)")
             }
         }
-        
-        let contactA = Friend(userId: 1, lastName: "tata", firstName: "tete", email: "tete@mail.com")
-        let contactB = Friend(userId: 2, lastName: "toto", firstName: "titi", email: "titi@mail.com")
-        contactList.append(contactA)
-        contactList.append(contactB)
-        //findcontacts()
     }
     
     let cellReuseIdentifier = "cell"
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         createContact()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.delegate = self
-        tableView.dataSource = self
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellReuseIdentifier)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
     }
     
     // number of rows in table view
@@ -59,7 +54,7 @@ class TableViewControllerFriends: UITableViewController {
         
         let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
         
-        cell.textLabel?.text = self.contactList[indexPath.row].firstName
+        cell.textLabel?.text = self.contactList[indexPath.row].firstName+" "+self.contactList[indexPath.row].lastName+" ("+self.contactList[indexPath.row].username+")"
         
         return cell
     }

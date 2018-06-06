@@ -11,7 +11,7 @@ import Foundation
 class Network {
     
     static var token = UserDefaults.standard.string(forKey: "token") ?? ""
-
+    static var userId = UserDefaults.standard.string(forKey: "id") ?? ""
     static let scheme = "https"
     static let host = "9a18027b.ngrok.io"
     // static let host = ""
@@ -25,7 +25,15 @@ class Network {
         self.token = token
     }
     
-    static func get(path: String, for userId: Int, completion: ((Result<Data>) -> Void)?) {
+    static func setUserId(userId: String) {
+        self.userId = userId
+    }
+    
+    static func getUserId() -> String {
+        return self.userId
+    }
+    
+    static func get(path: String, completion: ((Result<Data>) -> Void)?) {
         var urlComponents = URLComponents()
         urlComponents.scheme = self.scheme
         urlComponents.host = self.host

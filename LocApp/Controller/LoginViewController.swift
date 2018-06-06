@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
         var username: String?
         var password: String?
         var token: String?
+        var id: String?
     }
     var authenticator: Authenticator!
     
@@ -30,7 +31,7 @@ class LoginViewController: UIViewController {
         let username = self.usernameTextField.text
         let password = self.passwordTextField.text
         
-        self.authenticator = Authenticator(username: username, password: password, token: nil)
+        self.authenticator = Authenticator(username: username, password: password, token: nil, id: nil)
     }
     
     private func login() {
@@ -45,8 +46,12 @@ class LoginViewController: UIViewController {
                 else if let responseJson = responseJson {
                     let decoder = JSONDecoder()
                     let authenticator = try! decoder.decode(Authenticator.self, from: responseJson)
+                    print(authenticator)
+                    Network.setUserId(userId: authenticator.id!)
+                    UserDefaults.standard.set(authenticator.id!, forKey: "id")
                     UserDefaults.standard.set(authenticator.token!, forKey: "token")
                     Network.setToken(token: authenticator.token!)
+                    
                 }
             }
             UserDefaults.standard.set(true, forKey: "status")
