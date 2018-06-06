@@ -17,8 +17,7 @@ class TableViewControllerFriends: UITableViewController {
             switch result {
             case .success(let jsonData):
                 let data = jsonData
-                if let utf8Representation = String(data: data, encoding: .utf8) {
-                    print("response: ", utf8Representation)
+                if String(data: data, encoding: .utf8) != nil {
                     let decoder = JSONDecoder()
                     self.contactList = try! decoder.decode([Friend].self, from: jsonData)
                     self.tableView.reloadData()

@@ -82,11 +82,16 @@ extension RegistrationViewController {
             return
         }
         Network.post(path: "/user", jsonData: jsonData) { (error, responseJson) in
-            if let error = error {
-                fatalError(error.localizedDescription)
+            DispatchQueue.main.async {
+                if  error != nil{
+                    self.presentAlert(with: "La création a échoué, veuillez ressayer")
+                    //fatalError(error.localizedDescription)
+                } else {
+                    self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
+            }
+                
             }
         }
-        self.performSegue(withIdentifier: "segueToRegistrationSuccess", sender: nil)
     }
     
     private func presentAlert(with error: String) {
