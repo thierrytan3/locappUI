@@ -81,7 +81,7 @@ extension RegistrationViewController {
         guard let jsonData = try? JSONEncoder().encode(self.user) else {
             return
         }
-        Network.post(path: "/posts", jsonData: jsonData) { (error, responseJson) in
+        Network.post(path: "/user", jsonData: jsonData) { (error, responseJson) in
             if let error = error {
                 fatalError(error.localizedDescription)
             }

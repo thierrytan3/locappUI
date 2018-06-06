@@ -10,8 +10,26 @@ import UIKit
 
 class TableViewControllerFriends: UITableViewController {
     var contactList: [Friend] = []
+    var data = ""
     
     func createContact() {
+        print(Network.token)
+        Network.get(path: "/user/1/friends", for: 1) { (result) in
+            switch result {
+            case .success(let jsonData):
+                let data = jsonData
+                if let utf8Representation = String(data: data, encoding: .utf8) {
+                    print("response: ", utf8Representation)
+                    
+                } else {
+                    print("no readable data received in response")
+                }
+
+            case .failure(let error):
+                fatalError("error: \(error.localizedDescription)")
+            }
+        }
+        
         let contactA = Friend(userId: 1, lastName: "tata", firstName: "tete", email: "tete@mail.com")
         let contactB = Friend(userId: 2, lastName: "toto", firstName: "titi", email: "titi@mail.com")
         contactList.append(contactA)

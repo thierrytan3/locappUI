@@ -10,13 +10,19 @@ import Foundation
 
 class Network {
     
+    static var token = UserDefaults.standard.string(forKey: "token") ?? ""
+
     static let scheme = "https"
-    static let host = "jsonplaceholder.typicode.com"
+    static let host = "9a18027b.ngrok.io"
     // static let host = ""
-    
+
     enum Result<Value> {
         case success(Value)
         case failure(Error)
+    }
+    
+    static func setToken(token: String) {
+        self.token = token
     }
     
     static func get(path: String, for userId: Int, completion: ((Result<Data>) -> Void)?) {
@@ -24,14 +30,15 @@ class Network {
         urlComponents.scheme = self.scheme
         urlComponents.host = self.host
         urlComponents.path = path
-        let userIdItem = URLQueryItem(name: "userId", value: "\(userId)")
-        urlComponents.queryItems = [userIdItem]
+        //let userIdItem = URLQueryItem(name: "userId", value: "\(userId)")
+        //urlComponents.queryItems = [userIdItem]
         guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
         let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
         let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: request) { (responseData, response, responseError) in
@@ -64,7 +71,7 @@ class Network {
     }
     */
     
-    static func post(path: String, jsonData: Data, completion:((Error?, Data?) -> Void)?) {
+    static func post(path: String, jsonData: Data?, completion:((Error?, Data?) -> Void)?) {
         var urlComponents = URLComponents()
         urlComponents.scheme = self.scheme
         urlComponents.host = self.host
@@ -76,9 +83,9 @@ class Network {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request.httpBody = jsonData
-        print("jsonData: ", String(data: request.httpBody!, encoding: .utf8) ?? "no body data")
         
         let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
         let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: request) { (responseData, response, responseError) in
@@ -94,7 +101,7 @@ class Network {
                     completion?(error, nil)
                     return
             }
-            
+
             if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
                 print("response: ", utf8Representation)
                 completion?(nil, data)

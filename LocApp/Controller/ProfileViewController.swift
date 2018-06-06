@@ -11,7 +11,12 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     @IBAction func logout() {
+        Network.post(path: "/authentication/logout", jsonData: nil) { (error, responseJson) in
+        }
+
         UserDefaults.standard.set(false, forKey: "status")
+        UserDefaults.standard.removeObject(forKey: "token")
+
         Switcher.updateRootVC()
     }
     

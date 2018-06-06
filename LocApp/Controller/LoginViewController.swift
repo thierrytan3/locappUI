@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     struct Authenticator: Codable {
         var username: String?
         var password: String?
+        var token: String?
     }
     var authenticator: Authenticator!
     
@@ -29,12 +30,25 @@ class LoginViewController: UIViewController {
         let username = self.usernameTextField.text
         let password = self.passwordTextField.text
         
-        self.authenticator = Authenticator(username: username, password: password)
+        self.authenticator = Authenticator(username: username, password: password, token: nil)
     }
     
     private func login() {
         if self.authenticator.username != nil && self.authenticator.username != "" && self.authenticator.password != nil && self.authenticator.password != "" {
-            //
+            guard let jsonData = try? JSONEncoder().encode(self.authenticator) else {
+                return
+            }
+            Network.post(path: "/authentication", jsonData: jsonData) { (error, responseJson) in
+                if let error = error {
+                    fatalError(error.localizedDescription)
+                }
+                else if let responseJson = responseJson {
+                    let decoder = JSONDecoder()
+                    let authenticator = try! decoder.decode(Authenticator.self, from: responseJson)
+                    UserDefaults.standard.set(authenticator.token!, forKey: "token")
+                    Network.setToken(token: authenticator.token!)
+                }
+            }
             UserDefaults.standard.set(true, forKey: "status")
             Switcher.updateRootVC()
         }
