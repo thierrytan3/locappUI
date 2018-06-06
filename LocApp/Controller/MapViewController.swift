@@ -10,6 +10,12 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
+    var positionsFriends: [FriendsLocation] = []
+
+    struct Location: Codable {
+        var latitude: String
+        var longitude: String
+    }
     
     // Mark: - Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -21,15 +27,45 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadFriendsLocation()
 
         // Do any additional setup after loading the view.
         self.mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
         
-        let annotation1: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.859231, longitude: 2.294782), title: "Bob MARLEY")
-        let annotation2: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.873566, longitude: 2.294686), title: "Bob DYLAN")
-        let annotation3: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.865866, longitude: 2.321214), title: "Carl JONSON")
-        let annotations: [Pin] = [annotation1, annotation2, annotation3]
-        self.mapView.addAnnotations(annotations)
+        
+    }
+    
+    private func loadFriendsLocation(){
+        Network.get(path: "/user/\(Network.getUserId())/positions/friends") { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let jsonData):
+                    let data = jsonData
+                    if String(data: data, encoding: .utf8) != nil {
+                        let decoder = JSONDecoder()
+                        self.positionsFriends = try! decoder.decode([FriendsLocation].self, from: jsonData)
+                        var pins: [Pin] = []
+                        for friendLocation in self.positionsFriends {
+                            let pin = Pin(CLLocationCoordinate2D(latitude: Double(friendLocation.latitude)!, longitude: Double(friendLocation.longitude)!), title: friendLocation.username)
+                            pins.append(pin)
+                        }
+                        print(try! decoder.decode([FriendsLocation].self, from: jsonData))
+                        //let annotation1: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.859231, longitude: 2.294782), title: "Bob MARLEY")
+                        //let annotation2: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.873566, longitude: 2.294686), title: "Bob DYLAN")
+                        //let annotation3: Pin = Pin.init(CLLocationCoordinate2D(latitude: 48.865866, longitude: 2.321214), title: "Carl JONSON")
+                        //let annotations: [Pin] = [annotation1, annotation2, annotation3]
+                        self.mapView.addAnnotations(pins)
+
+                    } else {
+                        print("no readable data received in response")
+                    }
+                    
+                case .failure(let error):
+                    fatalError("error: \(error.localizedDescription)")
+                }
+            }
+
+        }
         
     }
     
@@ -80,6 +116,15 @@ extension MapViewController: MKMapViewDelegate {
         let region = MKCoordinateRegionMakeWithDistance(center, width, height)
         // let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: CLLocationDegrees(0.005), longitudeDelta: CLLocationDegrees(0.005)))
         self.mapView.setRegion(region , animated: true)
+        
+        let location = Location(latitude: String(userLocation.coordinate.latitude), longitude: String(userLocation.coordinate.longitude))
+        // Put request
+        guard let jsonData = try? JSONEncoder().encode(location) else {
+            return
+        }
+        Network.put(path: "/user/\(Network.getUserId())/position", jsonData: jsonData) { (error, jsonData) in
+            
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

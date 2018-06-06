@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		55D789C620C3193E00E0D8F0 /* TableViewControllerFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D789C520C3193E00E0D8F0 /* TableViewControllerFriends.swift */; };
 		55D789CA20C31FC500E0D8F0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D789C920C31FC500E0D8F0 /* Friend.swift */; };
+		930423D120C846F4003290E7 /* FriendsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930423D020C846F4003290E7 /* FriendsLocation.swift */; };
 		935BE86420BE0BFA00D45341 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BE86320BE0BFA00D45341 /* ProfileViewController.swift */; };
 		935BE86620BE152700D45341 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935BE86520BE152700D45341 /* Switcher.swift */; };
 		936F1C5A20BCC377003A95B0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F1C5920BCC377003A95B0 /* Colors.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		55D789C520C3193E00E0D8F0 /* TableViewControllerFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerFriends.swift; sourceTree = "<group>"; };
 		55D789C920C31FC500E0D8F0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		930423D020C846F4003290E7 /* FriendsLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsLocation.swift; sourceTree = "<group>"; };
 		935BE86320BE0BFA00D45341 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		935BE86520BE152700D45341 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		936F1C5920BCC377003A95B0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				93E811A420BACD940062A128 /* User.swift */,
 				55D789C920C31FC500E0D8F0 /* Friend.swift */,
+				930423D020C846F4003290E7 /* FriendsLocation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930423D120C846F4003290E7 /* FriendsLocation.swift in Sources */,
 				935BE86620BE152700D45341 /* Switcher.swift in Sources */,
 				93DA881020B5877D00EC5E45 /* RegistrationViewController.swift in Sources */,
 				55D789C620C3193E00E0D8F0 /* TableViewControllerFriends.swift in Sources */,

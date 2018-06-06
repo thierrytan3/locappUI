@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
             }
             Network.post(path: "/authentication", jsonData: jsonData) { (error, responseJson) in
                 DispatchQueue.main.async {
-                    if let error = error {
+                    if (error != nil) {
                         self.presentAlert(with: "Username ou mot de passe invalide.")
                     }
                     else if let responseJson = responseJson {

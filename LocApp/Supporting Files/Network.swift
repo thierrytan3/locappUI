@@ -13,7 +13,7 @@ class Network {
     static var token = UserDefaults.standard.string(forKey: "token") ?? ""
     static var userId = UserDefaults.standard.string(forKey: "id") ?? ""
     static let scheme = "https"
-    static let host = "9a18027b.ngrok.io"
+    static let host = "9ed609ea.ngrok.io"
     // static let host = ""
 
     enum Result<Value> {
@@ -134,6 +134,48 @@ class Network {
         }
     }
     */
+    
+    
+    static func put(path: String, jsonData: Data?, completion:((Error?, Data?) -> Void)?) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = self.scheme
+        urlComponents.host = self.host
+        urlComponents.path = path
+        guard let url = urlComponents.url else { fatalError("Could not create URL from components") }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = jsonData
+        
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            guard responseError == nil else {
+                completion?(responseError!, nil)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse,
+                (200...299).contains(response.statusCode) else {
+                    print ("server error")
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Data was not retrieved from request"]) as Error
+                    completion?(error, nil)
+                    return
+            }
+            
+            if let data = responseData, let utf8Representation = String(data: data, encoding: .utf8) {
+                print("response: ", utf8Representation)
+                completion?(nil, data)
+            } else {
+                print("no readable data received in response")
+            }
+        }
+        task.resume()
+    }
     
     /*
     static func get(path: String) {
