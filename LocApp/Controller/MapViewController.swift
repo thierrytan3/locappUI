@@ -12,6 +12,7 @@ import MapKit
 class MapViewController: UIViewController {
     // MARK:- Properties
     var positionsFriends: [FriendsLocation] = []
+    var locationSharing: Bool = true
 
     struct Location: Codable {
         var latitude: String
@@ -21,6 +22,18 @@ class MapViewController: UIViewController {
     // Mark: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBAction func shareLocation(_ sender: UIButton) {
+        if self.locationSharing == true {
+            self.locationSharing = false
+            sender.backgroundColor = UIColor.vermillonCustom
+            AlertController.presentAlertInfo(self, with: "Votre position actuelle n'est plus partagée.")
+        } else {
+            self.locationSharing = true
+            sender.backgroundColor = UIColor.white
+            AlertController.presentAlertInfo(self, with: "Votre position actuelle est partagée.")
+        }
+    }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         self.searchBar.resignFirstResponder()
@@ -32,6 +45,8 @@ class MapViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
+        
+        
         
     }
     
@@ -116,7 +131,9 @@ extension MapViewController: MKMapViewDelegate {
         // let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: CLLocationDegrees(0.005), longitudeDelta: CLLocationDegrees(0.005)))
         self.mapView.setRegion(region , animated: true)
         
-        self.saveUserLocation(userLocation)
+        if self.locationSharing {
+            self.saveUserLocation(userLocation)
+        }
     }
     
     private func saveUserLocation(_ userLocation: MKUserLocation) {

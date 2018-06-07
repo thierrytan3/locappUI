@@ -20,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // To force logout (for test)
-        // UserDefaults.standard.set(false, forKey: "status")
-        // UserDefaults.standard.removeObject(forKey: "token")
+        /*
+        UserDefaults.standard.set(false, forKey: "status")
+        UserDefaults.standard.removeObject(forKey: "token")
+        */
         
         Switcher.updateRootVC()
         self.locationManager.requestAlwaysAuthorization()

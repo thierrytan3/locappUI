@@ -13,7 +13,7 @@ class Network {
     static var token = UserDefaults.standard.string(forKey: "token") ?? ""
     static var userId = UserDefaults.standard.string(forKey: "id") ?? ""
     static let scheme = "https"
-    static let host = "9ed609ea.ngrok.io"
+    static let host = "4a8af4ae.ngrok.io"
 
     enum Result<Value> {
         case success(Value)

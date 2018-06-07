@@ -17,4 +17,11 @@ class AlertController {
         view.present(alert, animated: true, completion: nil)
     }
     
+    static func presentAlertInfo(_ view: UIViewController, with info: String) {
+        let alert = UIAlertController(title: "Info", message: info, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        view.present(alert, animated: true, completion: nil)
+    }
+    
 }

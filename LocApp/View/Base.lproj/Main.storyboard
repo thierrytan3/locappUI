@@ -343,6 +343,9 @@
                                 </constraints>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="eye 25pt"/>
+                                <connections>
+                                    <action selector="shareLocation:" destination="64y-xn-ajf" eventType="touchUpInside" id="sLW-Fe-AwE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
